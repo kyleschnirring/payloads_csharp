@@ -1,6 +1,6 @@
 public static void Main (string[], args) {
   int lport = int.Parse(args [0]);
-  using (UdpClient listener = new UdpClient(lport)){
+  using (UdpClient listener = new UdpClient(lport)) {
     IPEndPoint localEP = new IPEndPoint(IPAddress.Any, lport);
     string cmd;
     byte[] input;
