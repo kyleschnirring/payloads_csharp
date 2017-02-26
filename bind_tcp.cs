@@ -24,6 +24,7 @@ public static void Main(string[] args) {
 
             if (string.IsNullOrWhiteSpace(cmd))
               continue;
+              
             string[] split = cmd.Trim().Split(' ');
             string filename = split.First();
             string arg = string.Join(" ", split.Skip(1));
