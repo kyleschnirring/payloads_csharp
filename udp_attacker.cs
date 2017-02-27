@@ -1,5 +1,13 @@
 //use udp_attacker like so /tmp/udp_attacker.exe 192.168.1.3 4444
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.IO;
+using System.Diagnostics;
+using System.Net;
 
 namespace ch1_udp_attacker {
 

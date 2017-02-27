@@ -1,10 +1,19 @@
 //When running use like so /tmp/bind_tcp.exe 4444
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.IO;
+using System.Diagnostics;
+using System.Net;
+
 
 namespace ch1_bind_tcp {
 
   class MainClass {
-    
+
     public static void Main(string[] args) {
       int port = int.Parse (args [0]);
       TcpListener listener = new TcpListener(IPAddress.Any, port);
