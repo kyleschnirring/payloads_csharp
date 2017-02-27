@@ -13,7 +13,7 @@ namespace ch1_reverse_udp {
 
   class MainClass {
 
-    public static void Main (string[], args) {
+    public static void Main (string[] args) {
       int lport = int.Parse(args [0]);
       using (UdpClient listener = new UdpClient(lport)) {
         IPEndPoint localEP = new IPEndPoint(IPAddress.Any, lport);
