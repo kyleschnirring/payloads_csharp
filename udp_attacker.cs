@@ -21,13 +21,13 @@ namespace ch1_udp_attacker {
         string output;
         byte[] bytes;
 
-        using (Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocalType.Udp)) {
+        using (Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)) {
           IPAddress addr = IPAddress.Parse(args[0]);
           IPEndPoint addrEP = new IPEndPoint(addr, lport);
-          Console.Writeline ("Enter command to send, or a blank line to quit");
+          Console.WriteLine ("Enter command to send, or a blank line to quit");
 
           while (true) {
-            string command = Console.Readline();
+            string command = Console.ReadLine();
             byte[] buff = Encoding.ASCII.GetBytes(command);
 
             try {

