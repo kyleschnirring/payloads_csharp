@@ -29,7 +29,7 @@ namespace ch1_reverse_udp {
             return;
           }
 
-          if (sting.IsNullOrWhiteSpace(cmd))
+          if (string.IsNullOrWhiteSpace(cmd))
             continue;
 
           string[] split = cmd.Trim().Split(' ');
