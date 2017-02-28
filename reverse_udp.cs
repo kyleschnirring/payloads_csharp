@@ -1,4 +1,4 @@
-//When running place arguments like so ./reverse_udp.exe 127.0.0.1 4444
+//When running place arguments like so ./reverse_udp.exe 4444
 using System;
 using System.Collections.Generic;
 using System.Linq;
